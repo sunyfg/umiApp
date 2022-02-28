@@ -1,9 +1,10 @@
 // @ts-nocheck
 import { IGetInitialProps, Helmet, Link } from 'umi';
-import { Button } from "antd";
+import classnames from 'classnames';
+import { Button } from 'antd';
 import styles from './index.less';
 
-const Home = props => {
+const Home = (props) => {
   const { data } = props;
 
   return (
@@ -14,12 +15,17 @@ const Home = props => {
       </Helmet>
       <main>
         <h1 className={styles.title}>Home Page {data?.title}</h1>
-        <Link to={'/page1'}>Page 1</Link>
-        <Button type="primary">按钮</Button>
+        <Link className={classnames('font-sans text-blue-500')} to={'/page1'}>
+          Page 1
+        </Link>
+        <Button className={classnames('hover:bg-red-400')} type="primary">
+          按钮
+        </Button>
+        <div className={classnames('')}></div>
       </main>
     </>
   );
-}
+};
 
 /**
  * 服务端渲染
@@ -39,10 +45,8 @@ Home.getInitialProps = (async (ctx) => {
   return Promise.resolve({
     data: {
       title: 'Hello World sun',
-    }
-  })
+    },
+  });
 }) as IGetInitialProps;
 
 export default Home;
-
-
